@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import Calendar from "../../utils/SideBar/Calendar";
 import TagsBar from "../../utils/SideBar/TagBar";
 
-import Clock from "../../utils/Clock";
 import SearchBox from "../../utils/SideBar/SearchBar";
 
 
@@ -101,7 +100,6 @@ const SideBar: React.FC<SideBarProps> = ({ is_open, set_is_open }) => {
                         <li><a>li2</a></li>
                     </div>
                     <Calendar />
-                    <Clock />
                 </div>                
             </div>
             <div>
