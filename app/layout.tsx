@@ -5,8 +5,8 @@ import "./globals.css";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer"
 
-import ToolBox from "./components/utils/ToolBox";
-import Cursor from "./utils/cursor";
+// import ToolBox from "./components/utils/ToolBox";
+// import Cursor from "./utils/cursor";
 
 
 const geistSans = Geist({

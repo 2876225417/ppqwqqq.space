@@ -1,9 +1,9 @@
 
 "use client"
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-import Calendar from "../../utils/SideBar/Calendar";
+// import Calendar from "../../utils/SideBar/Calendar";
 import TagsBar from "../../utils/SideBar/TagBar";
 
 import SearchBox from "../../utils/SideBar/SearchBar";
@@ -99,7 +99,6 @@ const SideBar: React.FC<SideBarProps> = ({ is_open, set_is_open }) => {
                         <li><a>li1</a></li>
                         <li><a>li2</a></li>
                     </div>
-                    <Calendar />
                 </div>                
             </div>
             <div>

@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-
 
 // 动态加载 MDEditor 编辑器
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
@@ -11,7 +10,7 @@ const EditorPage = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    content: ''
+    content: '',
   });
 
   // 表单变化处理
@@ -24,10 +23,10 @@ const EditorPage = () => {
   };
 
   // Markdown 编辑器内容变化处理
-  const handleEditorChange = (value: string) => {
+  const handleEditorChange = (value?: string) => {
     setFormData(prevData => ({
       ...prevData,
-      content: value,
+      content: value || '', // 如果 value 是 undefined，则设置为空字符串
     }));
   };
 
@@ -76,7 +75,7 @@ const EditorPage = () => {
           <label htmlFor="content" className="block text-sm font-medium text-gray-700">内容</label>
           <MDEditor
             value={formData.content}
-            onChange={handleEditorChange}
+            onChange={handleEditorChange} // 修复后的方法
             height={400}
           />
         </div>

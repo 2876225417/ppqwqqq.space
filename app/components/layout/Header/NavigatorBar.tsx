@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import SideBar from "./SideBar";
-import ProgressIndicator from "./ProgressIndicator";
+// import ProgressIndicator from "./ProgressIndicator";
 import ThemeSwitcher from "../../utils/Tools/ThemeSwitcher";
 
 const NavigatorBar = () => {

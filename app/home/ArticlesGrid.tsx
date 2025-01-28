@@ -1,10 +1,19 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+// 定义文章的类型
+type Article = {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+};
+
 const ArticlesGrid = () => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,15 +29,15 @@ const ArticlesGrid = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch articles');
         }
-        const data = await response.json();
+        const data: Article[] = await response.json(); // 明确指定返回的数据类型
         setArticles(data);
         setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        setError((err as Error).message);
         setLoading(false);
       }
     };
-    
+
     fetchArticles();
   }, []);
 
@@ -50,7 +59,7 @@ const ArticlesGrid = () => {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {currentArticles.map((article: any) => (
+        {currentArticles.map((article: Article) => (
           <div key={article.id} className="card shadow-xl bg-base-100 hover:bg-gray-100 transition-all duration-300">
             <div className="card-body">
               <h2 className="card-title text-xl font-bold">{article.title}</h2>

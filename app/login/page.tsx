@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm"
+// import LoginForm from "../components/LoginForm"
 
 export default function LoginPage() {
   return (
@@ -7,7 +7,7 @@ export default function LoginPage() {
         <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">
           Private Access
         </h1>
-        <LoginForm />
+
       </div>
     </div>
   )
