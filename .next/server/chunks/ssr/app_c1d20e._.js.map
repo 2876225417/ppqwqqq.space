@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///home/ppqwqqq/qwq_sites/ppqwqqq.space/app/components/utils/Clock.tsx"],"sourcesContent":["// components/Clock.tsx\n'use client';  // 如果你使用的是 Next.js 13+ 的 App Directory，确保使用 'use client' 来启用客户端渲染\n\nimport { useEffect, useState } from 'react';\n\nconst Clock = () => {\n  const [time, setTime] = useState<string>('');\n\n  // 每秒更新时间\n  useEffect(() => {\n    const interval = setInterval(() => {\n      const currentTime = new Date().toLocaleTimeString();\n      setTime(currentTime);\n    }, 1000);\n\n    // 清除定时器\n    return () => clearInterval(interval);\n  }, []);\n\n  return (\n    <div className=\"text-xl font-semibold\">\n      当前时间: {time}\n    </div>\n  );\n};\n\nexport default Clock;\n"],"names":[],"mappings":"AAAA,uBAAuB;;;;;AAGvB;AAFA,cAAe,iEAAiE;;;AAIhF,MAAM,QAAQ;IACZ,MAAM,CAAC,MAAM,QAAQ,GAAG,CAAA,GAAA,qMAAA,CAAA,WAAQ,AAAD,EAAU;IAEzC,SAAS;IACT,CAAA,GAAA,qMAAA,CAAA,YAAS,AAAD,EAAE;QACR,MAAM,WAAW,YAAY;YAC3B,MAAM,cAAc,IAAI,OAAO,kBAAkB;YACjD,QAAQ;QACV,GAAG;QAEH,QAAQ;QACR,OAAO,IAAM,cAAc;IAC7B,GAAG,EAAE;IAEL,qBACE,8OAAC;QAAI,WAAU;;YAAwB;YAC9B;;;;;;;AAGb;uCAEe"}},
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
