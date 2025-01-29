@@ -23,7 +23,7 @@ export default function Home() {
                       gap-8">
         <div className="lg:col-span-3">
           <div>
-            <ArticlesGrid />
+            <ArticlesGrid /> 
           </div>
         </div>    
 

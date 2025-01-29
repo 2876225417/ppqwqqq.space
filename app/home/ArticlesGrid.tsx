@@ -25,7 +25,7 @@ const ArticlesGrid = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await fetch('http://localhost:8080/articles');
+        const response = await fetch('/api/articles');
         if (!response.ok) {
           throw new Error('Failed to fetch articles');
         }
