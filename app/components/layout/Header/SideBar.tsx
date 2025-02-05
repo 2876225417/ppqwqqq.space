@@ -8,6 +8,8 @@ import TagsBar from "../../utils/SideBar/TagBar";
 
 import SearchBox from "../../utils/SideBar/SearchBar";
 
+import Link from "next/link";
+import CountClock from "../../utils/SideBar/CountClock";
 
 interface SideBarProps {
     is_open: boolean;
@@ -52,18 +54,16 @@ const SideBar: React.FC<SideBarProps> = ({ is_open, set_is_open }) => {
             
             
             <div className="drawer-side">
-                <div className="p-4 text-lg font-semibold">SideBar Title</div>
                 <label 
                     htmlFor="sidebar" 
                     aria-label="close sidebar" 
                     className={`drawer-overlay 
                                 ${ is_open ? "backdrop-blur-sm" : " "}`}></label>
-
                 <div className="menu 
                                 bg-base-200 
                                 text-base-content 
                                 min-h-full 
-                                w-80 
+                                w-96
                                 p-4">
                     <div className="pb-3">
                         <SearchBox />
@@ -77,22 +77,31 @@ const SideBar: React.FC<SideBarProps> = ({ is_open, set_is_open }) => {
                                             
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-24
-                                                h-24
+                                <div className="w-28
+                                                h-28
                                                 rounded
                                                 overflow-hidden">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    <img src="/api/images/avatar/star.jpg" />
                                 </div>
                             </div>
                             <div className="pl-5">
                                 <h2 className="text-xl font-semibold">Geek You</h2>
-                                <p className="text-sm text-gray-500">github</p>
-                                <p className="text-sm text-gray-500">2876225417</p>
-                                <p className="text-sm text-gray-500">Discord</p>
+                                <p className="link text-sm text-gray-500">
+                                    <Link href="https://www.github.com/2876225417">Github</Link>
+                                </p>
+                                <p className="link text-sm text-gray-500">
+                                    <Link href="">2876225417@qq.com</Link>
+                                </p>
+                                <p className="link text-sm text-gray-500">
+                                    <Link href="https://discord.gg/AT9qq8sP">Discord</Link>
+                                </p>
                             </div>
                         </div>
                         <div className="pb-3 pt-3" >
                             <TagsBar />
+                        </div>
+                        <div>
+                            <CountClock />
                         </div>
                     </div>
                     <div className="pt-3">

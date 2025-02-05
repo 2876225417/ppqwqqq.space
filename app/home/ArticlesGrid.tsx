@@ -57,6 +57,15 @@ const ArticlesGrid = () => {
   if (loading) return <p>加载中...</p>;
   if (error) return <p>错误: {error}</p>;
 
+  // 截取文章内容的前150个字符，添加省略号
+  const truncateContent = (content: string) => {
+    if (!content) {
+      return ''; // 如果 content 是 undefined 或 null，返回空字符串
+    }
+    return content.length > 150 ? content.slice(0, 150) + '...' : content;
+  };
+
+
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -65,7 +74,7 @@ const ArticlesGrid = () => {
             <div className="card-body">
               <h2 className="card-title text-xl font-bold">{article.title}</h2>
               <p className="text-sm text-gray-500">{article.date}</p>
-              <p className="mt-4">{article.content}</p>
+              <p className="mt-4">{truncateContent(article.content)}</p>
               <p className="mt-2 text-sm text-gray-600">Written by {article.author}</p>
               <div className="card-actions justify-end">
                 {/* "Read More" 按钮，链接到文章详细页面 */}
@@ -78,10 +87,9 @@ const ArticlesGrid = () => {
         ))}
       </div>
 
-      {/* 分页按钮 */}
+      {/* 使用 DaisyUI 分页组件 */}
       <div className="flex justify-center mt-8">
         <div className="btn-group">
-          {/* Previous Button */}
           <button
             className={`btn ${currentPage === 1 ? 'btn-disabled' : ''}`}
             onClick={() => paginate(currentPage - 1)}
@@ -101,7 +109,6 @@ const ArticlesGrid = () => {
             </button>
           ))}
 
-          {/* Next Button */}
           <button
             className={`btn ${currentPage === totalPages ? 'btn-disabled' : ''}`}
             onClick={() => paginate(currentPage + 1)}
