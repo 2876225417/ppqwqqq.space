@@ -8,6 +8,7 @@ type Article = {
   id: number;
   title: string;
   description: string;
+  content: string;
   date: string;
   author: string;
 };
@@ -64,7 +65,7 @@ const ArticlesGrid = () => {
             <div className="card-body">
               <h2 className="card-title text-xl font-bold">{article.title}</h2>
               <p className="text-sm text-gray-500">{article.date}</p>
-              <p className="mt-4">{article.description}</p>
+              <p className="mt-4">{article.content}</p>
               <p className="mt-2 text-sm text-gray-600">Written by {article.author}</p>
               <div className="card-actions justify-end">
                 {/* "Read More" 按钮，链接到文章详细页面 */}

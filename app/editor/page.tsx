@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+// import { Scope_One } from 'next/font/google';
 
 // 动态加载 MDEditor 编辑器
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
@@ -9,7 +10,7 @@ const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
 const EditorPage = () => {
   const [formData, setFormData] = useState({
     title: '',
-    description: '',
+    author: '',
     content: '',
   });
 
@@ -31,11 +32,35 @@ const EditorPage = () => {
   };
 
   // 提交表单
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('提交的数据：', formData);
-    alert('文章已提交');
-    setFormData({ title: '', description: '', content: '' });
+    const data_to_send = {
+      title: formData.title,
+      content: formData.content,
+      author: formData.author,
+    };
+
+    try {
+      const response = await fetch("/api/articles/create_art", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data_to_send),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to sumbit article!");
+      }
+
+      console.log("Sumbit article successfully!");
+
+      setFormData({title: "", author: "", content: ""});
+
+    } catch (error) {
+      console.error("Failed to sumbit article: ", error);
+    }
+  
   };
 
   return (
@@ -58,12 +83,12 @@ const EditorPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">简短描述</label>
+          <label htmlFor="author" className="block text-sm font-medium text-gray-700">简短描述</label>
           <input
             type="text"
-            id="description"
-            name="description"
-            value={formData.description}
+            id="author"
+            name="author"
+            value={formData.author}
             onChange={handleChange}
             className="mt-2 p-2 border border-gray-300 rounded w-full"
             placeholder="请输入简短描述"

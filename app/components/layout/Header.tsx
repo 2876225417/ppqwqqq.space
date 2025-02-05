@@ -5,27 +5,24 @@ import NavigatorBar from "./Header/NavigatorBar";
 import ProgressIndicator from "./Header/ProgressIndicator";
 import Banner from "./Header/Banner";
 
+const initialImages = [
+    "/api/images/banner/1.jpg",
+    "/api/images/banner/2.jpg"
+];
+
 const Header = () => {
-    // 图片 URL 列表
-    const [images, setImages] = useState([
-        "/api/images/banner/1.jpg",
-        "/api/images/banner/2.jpg"
-    ]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isNavVisible, setIsNavVisible] = useState(false);
-    const [isLoading, setIsLoading] = useState(true); // 处理加载状态
+    const [isLoading, setIsLoading] = useState(true);
 
     // 预加载图片
     useEffect(() => {
         const preloadImages = async () => {
-            const loadedImages = [];
-            for (const imgSrc of images) {
+            for (const imgSrc of initialImages) {
                 const img = new Image();
                 img.src = imgSrc;
                 await img.decode().catch(() => console.error(`Failed to load image: ${imgSrc}`));
-                loadedImages.push(imgSrc);
             }
-            setImages(loadedImages);
             setIsLoading(false); // 预加载完成，取消加载状态
         };
 
@@ -34,14 +31,14 @@ const Header = () => {
 
     // 轮播图片
     useEffect(() => {
-        if (images.length === 0) return;
+        if (initialImages.length === 0) return;
 
         const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % initialImages.length);
         }, 10000);
 
         return () => clearInterval(interval);
-    }, [images]);
+    }, []);
 
     // 监听滚动事件，控制导航栏显示
     useEffect(() => {
@@ -89,7 +86,7 @@ const Header = () => {
 
             {/* 轮播背景图 */}
             <img
-                src={images[currentImageIndex]}
+                src={initialImages[currentImageIndex]}
                 alt="Header Background"
                 className="w-full h-full object-cover"
             />
